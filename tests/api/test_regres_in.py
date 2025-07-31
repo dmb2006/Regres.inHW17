@@ -1,7 +1,7 @@
 import requests
 from jsonschema import validate
 
-from project.schemas.schemas import post_users, login_user, single_user
+from project.schemas.schemas import post_users, login_user, single_users
 
 url = 'https://reqres.in/api'
 user = f'?{6}'
@@ -13,7 +13,7 @@ headers = {
 }
 
 def test_get_users_returns_200():
-    response = requests.get(url + users_end_points, params={'page': 1})
+    response = requests.get(url + users_end_points, params={'page': 1}, headers=headers)
     assert response.status_code == 200
     assert response.json()['total'] == 12
     assert response.json()['page'] == 1
